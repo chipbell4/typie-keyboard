@@ -39,7 +39,7 @@ document.body.addEventListener('keydown', function(evt) {
   var offset = lookupKeyCode(evt.which || evt.keyCode);
   console.log(offset);
 
-  var y = offset[1] / 5 * renderer.height + renderer.height / 10;
+  var y = offset[0] / 5 * renderer.height + renderer.height / 10;
   var x = renderer.width / 2;
 
   var blast = new Blast({ x: x, y: y, radius: 30, color: 0xff6600 });
