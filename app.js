@@ -9,6 +9,7 @@ stage.addChild(letter.sprite);
 
 function animate() {
   renderer.render(stage);
+  letter.update();
   requestAnimationFrame(animate);
 }
 
