@@ -40,7 +40,7 @@ document.body.addEventListener('keydown', function(evt) {
   console.log(offset);
 
   var y = offset[0] / 5 * renderer.height + renderer.height / 10;
-  var x = renderer.width / 2;
+  var x = offset[1] / 14 * renderer.width;
 
   var blast = new Blast({ x: x, y: y, radius: 30, color: 0xff6600 });
   stage.addChild(blast.sprite);
