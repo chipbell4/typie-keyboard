@@ -19,8 +19,8 @@ requestAnimationFrame(animate);
 
 function lookupKeyCode(keyCode) {
   var keyCodes = [
-    [192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187],
-    [9, 81, 87, 69,82, 84, 89, 85, 73, 79, 80, 219, 221, 220],
+    [49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187],
+    [81, 87, 69,82, 84, 89, 85, 73, 79, 80, 219, 221, 220],
     [65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 13],
     [16, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191],
     [32],
@@ -40,7 +40,12 @@ document.body.addEventListener('keydown', function(evt) {
   console.log(offset);
 
   var y = offset[0] / 5 * renderer.height + renderer.height / 10;
-  var x = offset[1] / 14 * renderer.width;
+  var x = offset[1] / 14 * renderer.width + renderer.width / 14;
+
+  // randomize a little
+  var maxJitter = 20;
+  y += maxJitter + Math.random() * (-2 * maxJitter);
+  x += maxJitter + Math.random() * (-2 * maxJitter);
 
   var blast = new Blast({ x: x, y: y, radius: 30, color: 0xff6600 });
   stage.addChild(blast.sprite);
