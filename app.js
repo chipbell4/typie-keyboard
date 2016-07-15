@@ -3,9 +3,15 @@ document.body.appendChild(renderer.view);
 
 // create the root of the scene graph
 var stage = new PIXI.Container();
+var blasts = [];
 
 function animate() {
   renderer.render(stage);
+
+  for(var i = 0; i < blasts.length; i++) {
+    blasts[i].update();
+  }
+
   requestAnimationFrame(animate);
 }
 
@@ -38,6 +44,7 @@ document.body.addEventListener('keydown', function(evt) {
 
   var blast = new Blast({ x: x, y: y, radius: 30, color: 0xff6600 });
   stage.addChild(blast.sprite);
+  blasts.push(blast);
 
   return false;
 });
