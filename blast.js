@@ -1,17 +1,17 @@
-var Letter = function(letter, options) {
-  this.sprite = new PIXI.Text(letter, {
-    font: '45px Arial',
-    align: 'center',
-    fill: options.color,
-    stroke: options.color,
-  });
+var Blast = function(options) {
+  this.sprite = new PIXI.Graphics();
+  this.sprite.beginFill(options.color);
+  this.sprite.arc(0, 0, 30, 0, 2 * Math.PI);
+  this.sprite.endFill();
+
   this.sprite.position.x = options.x;
   this.sprite.position.y = options.y;
+
   this.startTime = Date.now();
   this.duration = 2000;
 };
 
-Letter.prototype.update = function() {
+Blast.prototype.update = function() {
   var dt = Date.now() - this.startTime;
   if(dt > this.duration) {
     stage.removeChild(this.sprite);

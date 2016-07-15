@@ -4,12 +4,12 @@ document.body.appendChild(renderer.view);
 // create the root of the scene graph
 var stage = new PIXI.Container();
 
-var letter = new Letter('A', { color: 0xff6600, x: 100, y: 100 });
-stage.addChild(letter.sprite);
+var blast = new Blast({ color: 0xff6600, x: 100, y: 100 });
+stage.addChild(blast.sprite);
 
 function animate() {
   renderer.render(stage);
-  letter.update();
+  blast.update();
   requestAnimationFrame(animate);
 }
 
