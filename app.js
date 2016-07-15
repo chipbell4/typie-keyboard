@@ -36,4 +36,6 @@ function lookupKeyCode(keyCode) {
 document.body.addEventListener('keydown', function(evt) {
   var offset = lookupKeyCode(evt.which || evt.keyCode);
   console.log(offset);
+
+  return false;
 });
