@@ -9,7 +9,7 @@ var Blast = function(options) {
   this.sprite.anchor.x = this.sprite.anchor.y = 0.5
 
   this.startTime = Date.now();
-  this.duration = 2000;
+  this.duration = 1500;
 };
 
 Blast.prototype.update = function() {
