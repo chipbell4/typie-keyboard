@@ -14,3 +14,13 @@ function animate() {
 }
 
 requestAnimationFrame(animate);
+
+document.body.addEventListener('keydown', function(evt) {
+  var s = String.fromCharCode(evt.which || evt.keyCode);
+  var alphanumeric = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+  if(alphanumeric.indexOf(s) < 0) {
+    return;
+  }
+
+  console.log(s);
+});
