@@ -11,7 +11,7 @@ module.exports = {
     var scale = [0, 2, 3, 5, 7, 9, 10, 12, 14, 15, 17, 19, 21, 22, 24, 26, 27, 29, 31];
 
     if(row == 4) {
-      return basePitch;
+      return [basePitch];
     }
 
     var spacing;
