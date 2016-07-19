@@ -28,6 +28,10 @@ module.exports = {
       context: context,
       noteDuration: 4000,
     });
+    Bass.tick = function() {
+      Instrument.prototype.tick.call(Bass);
+      ChordManager.currentKey = this.currentTick % ChordManager.keys.length;
+    }
     Bass.start();
     Bass.output.connect(context.destination);
 

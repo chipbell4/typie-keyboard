@@ -23,9 +23,6 @@ module.exports = {
 
   start: function() {
     this.currentKey = 0;
-    setInterval(function() {
-      this.currentKey = (this.currentKey + 1) % this.keys.length;
-    }.bind(this), 2000);
   },
 
   currentScale: function(octave) {
@@ -46,9 +43,4 @@ module.exports = {
     5, 7, 9, 3, 5, 7, 9, 3,
     6, 12, 13, 10, 6, 4, 3, 1
   ].map(toPitches),
-
-  currentBassline: function() {
-    var rawNotes = this.keys[this.currentKey].bass;
-    return rawNotes.map(toPitches);
-  },
 };
