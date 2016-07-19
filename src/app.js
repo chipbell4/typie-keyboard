@@ -43,6 +43,9 @@ function lookupKeyCode(keyCode) {
 
 document.body.addEventListener('keydown', function(evt) {
   var offset = lookupKeyCode(evt.which || evt.keyCode);
+  if(offset === undefined) {
+    return;
+  }
 
   var y = offset[0] / 5 * renderer.height + renderer.height / 10;
   var x = offset[1] / 14 * renderer.width + renderer.width / 14;
