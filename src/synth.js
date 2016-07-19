@@ -6,7 +6,7 @@ var Synth = function(options) {
   this.gain.gain.value = 0;
 
   this.oscillator = options.context.createOscillator();
-  this.oscillator.frequency.value = options.frequency;
+  this.setFrequency(options.frequency);
   this.oscillator.start();
   this.oscillator.connect(this.gain);
 
@@ -37,5 +37,9 @@ Synth.prototype.start = function() {
 Synth.prototype.getGainAtTime = function(t) {
   return 1.0 - t / this.noteDuration;
 };
+
+Synth.prototype.setFrequency = function(frequency) {
+  this.oscillator.frequency.value = frequency;
+}
 
 module.exports = Synth;
