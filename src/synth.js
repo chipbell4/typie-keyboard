@@ -2,8 +2,8 @@ var Synth = function(options) {
   this.context = options.context;
 
   this.gain = options.context.createGain();
-  this.gain.connect(options.context.destination);
   this.gain.gain.value = 0;
+  this.output = this.gain; // the output for the synth
 
   this.oscillator = options.context.createOscillator();
   this.setFrequency(options.frequency);

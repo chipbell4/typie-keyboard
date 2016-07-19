@@ -47,8 +47,10 @@ document.body.addEventListener('keydown', function(evt) {
     frequencies: pitches,
     overtones: [1, 2.01, 3.02, 4.04],
     context: context,
+    outputNode: context.destination,
     noteDuration: 2.0
   });
+  instrument.output.connect(context.destination);
   instrument.start();
 
   return false;

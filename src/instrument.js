@@ -12,6 +12,16 @@ var Instrument = function(options) {
       noteDuration: options.noteDuration
     });
   });
+
+  this.merger = options.context.createChannelMerger(this.synths.length);
+  this.synths.forEach(function(synth, index) {
+    synth.output.connect(this.merger, 0, index);
+  }, this);
+
+  this.gain = options.context.createGain();
+  this.merger.connect(this.gain);
+  this.gain.gain.value = 0.1;
+  this.output = this.gain;
 };
 
 Instrument.prototype.start = function() {
