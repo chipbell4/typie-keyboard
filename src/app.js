@@ -2,6 +2,7 @@ var PIXI = require('pixi.js');
 var Blast = require('./blast');
 var Instrument = require('./instrument');
 var Keyboard = require('./keyboard');
+var Notes = require('./notes');
 
 var context = new AudioContext();
 
@@ -34,15 +35,16 @@ document.body.addEventListener('keydown', function(evt) {
   var x = offset[1] / 14 * renderer.width + renderer.width / 14;
 
   // randomize a little
-  var maxJitter = 20;
+  var maxJitter = 40;
   y += maxJitter + Math.random() * (-2 * maxJitter);
   x += maxJitter + Math.random() * (-2 * maxJitter);
 
   var blast = new Blast({ x: x, y: y, radius: 30, color: 0xff6600, stage: stage });
   blasts.push(blast);
 
+  var pitches = Notes.pitchesForOffset(offset[0], offset[1]);
   var instrument = new Instrument({
-    frequencies: [226, 226 * 2 / 3],
+    frequencies: pitches,
     context: context,
     noteDuration: 2.0
   });
