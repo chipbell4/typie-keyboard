@@ -1,12 +1,13 @@
 var PIXI = require('pixi.js');
 var Blast = require('./blast');
-var ChordManager = require('./chord-manager');
-var Instrument = require('./instrument');
 var Keyboard = require('./keyboard');
-
-ChordManager.start();
+var InstrumentManager = require('./instrument-manager');
+var ChordManager = require('./chord-manager');
 
 var context = new AudioContext();
+InstrumentManager.init(context);
+ChordManager.start();
+
 
 var renderer = PIXI.autoDetectRenderer(800, 600,{backgroundColor : 0x222222});
 document.body.appendChild(renderer.view);
@@ -44,16 +45,7 @@ document.body.addEventListener('keydown', function(evt) {
   var blast = new Blast({ x: x, y: y, radius: 30, color: 0xff6600, stage: stage });
   blasts.push(blast);
 
-  var scale = ChordManager.currentScale(offset[0]);
-  var instrument = new Instrument({
-    frequencies: scale.slice(offset[1], offset[1] + 3),
-    overtones: [1, 2.01, 3.02, 4.04],
-    context: context,
-    outputNode: context.destination,
-    noteDuration: 2.0
-  });
-  instrument.output.connect(context.destination);
-  instrument.start();
+  InstrumentManager.start(offset[0], offset[1]);
 
   return false;
 });
