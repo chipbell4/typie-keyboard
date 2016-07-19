@@ -1,5 +1,3 @@
-var Envelope = require('envelope-generator');
-
 var Synth = function(options) {
   this.context = options.context;
 
@@ -11,23 +9,31 @@ var Synth = function(options) {
   this.oscillator.frequency.value = options.frequency;
   this.oscillator.start();
   this.oscillator.connect(this.gain);
-
-  this.envelope = new Envelope(options.context, {
-    attackTime: 0.05,
-    decayTime: 0.3,
-    sustainLevel: 0.4,
-    releaseTime: 0.05
-  });
-
-  this.envelope.connect(this.gain.gain);
 };
 
 Synth.prototype.start = function() {
-  this.envelope.start(this.context.currentTime);
+  if(this.interval) {
+    clearInterval(this.interval);
+  }
+
+  var currentTime = 0;
+  var intervalLengthInMillis = 10;
+  var doTick = function() {
+    var newGain = this.getGainAtTime(currentTime);
+    this.gain.gain.value = newGain;
+
+    if(newGain < 0.001) {
+      clearInterval(this.interval);
+    }
+    
+    currentTime += intervalLengthInMillis / 1000;
+  }.bind(this);
+
+  this.interval = setInterval(doTick, intervalLengthInMillis);
 };
 
-Synth.prototype.stop = function() {
-  this.envelope.stop(this.context.currentTime);
+Synth.prototype.getGainAtTime = function(t) {
+  return 1.0 - t;
 };
 
 module.exports = Synth;

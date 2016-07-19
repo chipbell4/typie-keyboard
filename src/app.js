@@ -57,9 +57,6 @@ document.body.addEventListener('keydown', function(evt) {
 
   var synth = new Synth({ frequency: 226, context: context });
   synth.start();
-  setTimeout(function() {
-    synth.stop();
-  }, 1000);
 
   return false;
 });
