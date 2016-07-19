@@ -1,3 +1,6 @@
+var PIXI = require('pixi.js');
+var Blast = require('./blast');
+
 var renderer = PIXI.autoDetectRenderer(800, 600,{backgroundColor : 0x222222});
 document.body.appendChild(renderer.view);
 
@@ -46,8 +49,7 @@ document.body.addEventListener('keydown', function(evt) {
   y += maxJitter + Math.random() * (-2 * maxJitter);
   x += maxJitter + Math.random() * (-2 * maxJitter);
 
-  var blast = new Blast({ x: x, y: y, radius: 30, color: 0xff6600 });
-  stage.addChild(blast.sprite);
+  var blast = new Blast({ x: x, y: y, radius: 30, color: 0xff6600, stage: stage });
   blasts.push(blast);
 
   return false;

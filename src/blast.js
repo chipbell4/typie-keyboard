@@ -8,6 +8,9 @@ var Blast = function(options) {
   this.sprite.position.y = options.y;
   this.sprite.anchor.x = this.sprite.anchor.y = 0.5
 
+  this.stage = options.stage;
+  this.stage.addChild(this.sprite);
+
   this.startTime = Date.now();
   this.duration = 1000;
 };
@@ -15,10 +18,12 @@ var Blast = function(options) {
 Blast.prototype.update = function() {
   var dt = Date.now() - this.startTime;
   if(dt > this.duration) {
-    stage.removeChild(this.sprite);
+    this.stage.removeChild(this.sprite);
     return;
   }
 
   this.sprite.alpha = 1 - dt / this.duration;
   this.sprite.scale.x = this.sprite.scale.y = 1 + dt / this.duration * 4;
 };
+
+module.exports = Blast;
