@@ -24,7 +24,7 @@ module.exports = {
     }
 
     Bass = new Instrument({
-      frequencies: ChordManager.currentBassline(),
+      frequencies: ChordManager.bassline,
       context: context,
       noteDuration: 4000,
     });
@@ -39,8 +39,6 @@ module.exports = {
   },
 
   doTick: function() {
-    Bass.frequencies = ChordManager.currentBassline();
-
     for(var i = 0; i < instruments.length; i++) {
       var currentScale = ChordManager.currentScale(i);
       for(var j = 0; j < instruments[i].length; j++) {

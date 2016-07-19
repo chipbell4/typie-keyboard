@@ -9,19 +9,15 @@ module.exports = {
   keys: [
     {
       scale: [0, 3, 5, 7, 10],
-      bass: [0, 7, 10, 12, 0, 7, 10, 12],
     },
     {
       scale: [0, 3, 5, 7, 9, 10],
-      bass: [3, 7, 9, 10, 3, 7, 9, 10],
     },
     {
       scale: [0, 2, 5, 7, 9, 11],
-      bass: [5, 7, 9, 3, 5, 7, 9, 3],
     },
     {
       scale: [0, 1, 4, 6, 8, 10],
-      bass: [6, 12, 13, 10, 6, 4, 3, 1],
     }
   ],
 
@@ -43,6 +39,13 @@ module.exports = {
     
     return oneOctave.concat(twoOctave).concat(threeOctave).map(toPitches);
   },
+
+  bassline: [
+    0, 7, 10, 12, 0, 7, 10, 12,
+    3, 7, 9, 10, 3, 7, 9, 10,
+    5, 7, 9, 3, 5, 7, 9, 3,
+    6, 12, 13, 10, 6, 4, 3, 1
+  ].map(toPitches),
 
   currentBassline: function() {
     var rawNotes = this.keys[this.currentKey].bass;
