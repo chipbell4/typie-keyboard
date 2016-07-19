@@ -45,6 +45,7 @@ document.body.addEventListener('keydown', function(evt) {
   var pitches = Notes.pitchesForOffset(offset[0], offset[1]);
   var instrument = new Instrument({
     frequencies: pitches,
+    overtones: [1, 2.01, 3.02, 4.04],
     context: context,
     noteDuration: 2.0
   });
