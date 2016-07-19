@@ -58,7 +58,7 @@ document.body.addEventListener('keydown', function(evt) {
   var blast = new Blast({ x: x, y: y, radius: 30, color: 0xff6600, stage: stage });
   blasts.push(blast);
 
-  var synth = new Synth({ frequency: 226, context: context });
+  var synth = new Synth({ frequency: 226, context: context, noteDuration: 2 });
   synth.start();
 
   return false;
