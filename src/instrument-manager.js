@@ -46,7 +46,7 @@ module.exports = {
     for(var i = 0; i < instruments.length; i++) {
       var currentScale = ChordManager.currentScale(1);
       for(var j = 0; j < instruments[i].length; j++) {
-        instruments[i][j].frequencies = currentScale.slice(j, j + 3);
+        instruments[i][j].setFrequencies(currentScale.slice(j, j + 2));
       }
     }
   }

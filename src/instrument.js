@@ -46,4 +46,12 @@ Instrument.prototype.start = function() {
   });
 };
 
+Instrument.prototype.setFrequencies = function(frequencies) {
+  this.frequencies = frequencies;
+
+  // immediately set frequencies
+  this.currentTick--;
+  this.tick();
+};
+
 module.exports = Instrument;
