@@ -12,7 +12,7 @@ module.exports = {
       for(var j = 0; j < Keyboard.keyCodes[i].length; j++) {
         var instrument = new Instrument({
           frequencies: [220, 440, 220],
-          overtones: [1, 2.01, 3.02, 4.04],
+          overtones: ChordManager.overtoneSets[i],
           context: context,
           noteDuration: 4.5
         });
@@ -30,7 +30,7 @@ module.exports = {
     });
     Bass.tick = function() {
       Instrument.prototype.tick.call(Bass);
-      ChordManager.currentKey = this.currentTick % ChordManager.keys.length;
+      ChordManager.currentKey = Math.floor(this.currentTick / 8) % ChordManager.keys.length;
     }
     Bass.start();
     Bass.output.connect(context.destination);
@@ -44,7 +44,7 @@ module.exports = {
 
   doTick: function() {
     for(var i = 0; i < instruments.length; i++) {
-      var currentScale = ChordManager.currentScale(i);
+      var currentScale = ChordManager.currentScale(1);
       for(var j = 0; j < instruments[i].length; j++) {
         instruments[i][j].frequencies = currentScale.slice(j, j + 3);
       }

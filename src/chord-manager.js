@@ -21,6 +21,13 @@ module.exports = {
     }
   ],
 
+  overtoneSets: [
+    [1],
+    [1, 0, 1/3, 0, 1/5, 0, 1/7, 0, 1/9, 0, 1/11],
+    [1, 2.01, 3.02, 4.04],
+    [1, -1, 1, -1, 1, -1],
+  ],
+
   start: function() {
     this.currentKey = 0;
   },
