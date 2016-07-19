@@ -22,14 +22,16 @@ var Instrument = function(options) {
   this.merger.connect(this.gain);
   this.gain.gain.value = 0.1;
   this.output = this.gain;
-  this.currentNote = 0;
+  this.currentTick = 0;
 };
 
 Instrument.prototype.tick = function() {
-  this.currentNote = (this.currentNote + 1) % this.frequencies.length;
+  this.currentTick++;
     
+  var frequency = this.frequencies[this.currentTick % this.frequencies.length];
+
   for(var i = 0; i< this.overtones.length; i++) {
-    this.synths[i].setFrequency(this.frequencies[this.currentNote] * this.overtones[i]);
+    this.synths[i].setFrequency(frequency * this.overtones[i]);
   }
 };
 
