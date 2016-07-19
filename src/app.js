@@ -1,8 +1,10 @@
 var PIXI = require('pixi.js');
 var Blast = require('./blast');
+var ChordManager = require('./chord-manager');
 var Instrument = require('./instrument');
 var Keyboard = require('./keyboard');
-var Notes = require('./notes');
+
+ChordManager.start();
 
 var context = new AudioContext();
 
@@ -42,9 +44,9 @@ document.body.addEventListener('keydown', function(evt) {
   var blast = new Blast({ x: x, y: y, radius: 30, color: 0xff6600, stage: stage });
   blasts.push(blast);
 
-  var pitches = Notes.pitchesForOffset(offset[0], offset[1]);
+  var scale = ChordManager.currentScale(offset[0]);
   var instrument = new Instrument({
-    frequencies: pitches,
+    frequencies: scale.slice(offset[1], offset[1] + 3),
     overtones: [1, 2.01, 3.02, 4.04],
     context: context,
     outputNode: context.destination,
