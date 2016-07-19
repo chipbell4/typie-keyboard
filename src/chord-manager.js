@@ -7,18 +7,10 @@ var toPitches = function(offset) {
 module.exports = {
   currentKey: 0,
   keys: [
-    {
-      scale: [0, 3, 5, 7, 10],
-    },
-    {
-      scale: [0, 3, 5, 7, 9, 10],
-    },
-    {
-      scale: [0, 2, 5, 7, 9, 11],
-    },
-    {
-      scale: [0, 1, 4, 6, 8, 10],
-    }
+    [0, 3, 5, 7, 10],
+    [0, 3, 5, 7, 9, 10],
+    [0, 2, 5, 7, 9, 11],
+    [0, 1, 4, 6, 8, 10],
   ],
 
   overtoneSets: [
@@ -33,7 +25,7 @@ module.exports = {
   },
 
   currentScale: function(octave) {
-    var rawScale = this.keys[this.currentKey].scale;
+    var rawScale = this.keys[this.currentKey];
     var raise = function(octaves) {
       return function(offset) { return offset + octaves * 12; };
     };
