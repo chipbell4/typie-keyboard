@@ -42,7 +42,16 @@ document.body.addEventListener('keydown', function(evt) {
   y += maxJitter + Math.random() * (-2 * maxJitter);
   x += maxJitter + Math.random() * (-2 * maxJitter);
 
-  var blast = new Blast({ x: x, y: y, radius: 30, color: 0xff6600, stage: stage });
+  var colors = [
+    0xff6600,
+    0x66ff00,
+    0x0066ff,
+    0xff0066,
+  ];
+
+  var color = colors[offset[0]];
+
+  var blast = new Blast({ x: x, y: y, radius: 30, color: color, stage: stage });
   blasts.push(blast);
 
   InstrumentManager.start(offset[0], offset[1]);
