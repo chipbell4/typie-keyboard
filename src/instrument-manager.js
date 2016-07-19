@@ -3,6 +3,7 @@ var Instrument = require('./instrument');
 var ChordManager = require('./chord-manager');
 
 var instruments = [];
+var Bass;
 
 module.exports = {
   init: function(context) {
@@ -22,6 +23,14 @@ module.exports = {
       instruments.push(row);
     }
 
+    Bass = new Instrument({
+      frequencies: ChordManager.currentBassline(),
+      context: context,
+      noteDuration: 4000,
+    });
+    Bass.start();
+    Bass.output.connect(context.destination);
+
     setInterval(this.doTick.bind(this), 50);
   },
 
@@ -30,6 +39,8 @@ module.exports = {
   },
 
   doTick: function() {
+    Bass.frequencies = ChordManager.currentBassline();
+
     for(var i = 0; i < instruments.length; i++) {
       var currentScale = ChordManager.currentScale(i);
       for(var j = 0; j < instruments[i].length; j++) {

@@ -1,10 +1,11 @@
-var BASS = 50;
+var BASS = 150;
 
 var toPitches = function(offset) {
   return BASS * Math.pow(2, offset / 12);
 };
 
 module.exports = {
+  currentKey: 0,
   keys: [
     {
       scale: [0, 3, 5, 7, 10],
