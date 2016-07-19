@@ -39,7 +39,7 @@ Synth.prototype.getGainAtTime = function(t) {
 };
 
 Synth.prototype.setFrequency = function(frequency) {
-  this.oscillator.frequency.value = frequency;
+  this.oscillator.frequency.setValueAtTime(frequency, 0);
 }
 
 module.exports = Synth;
