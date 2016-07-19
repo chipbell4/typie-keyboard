@@ -22,6 +22,15 @@ var Instrument = function(options) {
   this.merger.connect(this.gain);
   this.gain.gain.value = 0.1;
   this.output = this.gain;
+  this.currentNote = 0;
+};
+
+Instrument.prototype.tick = function() {
+  this.currentNote = (this.currentNote + 1) % this.frequencies.length;
+    
+  for(var i = 0; i< this.overtones.length; i++) {
+    this.synths[i].setFrequency(this.frequencies[this.currentNote] * this.overtones[i]);
+  }
 };
 
 Instrument.prototype.start = function() {
@@ -29,16 +38,7 @@ Instrument.prototype.start = function() {
     clearInterval(this.interval);
   } 
 
-  var currentNote = 0;
-  var doTick = function() {
-    currentNote = (currentNote + 1) % this.frequencies.length;
-
-    for(var i = 0; i< this.overtones.length; i++) {
-      this.synths[i].setFrequency(this.frequencies[currentNote] * this.overtones[i]);
-    }
-  }.bind(this);
-
-  this.interval = setInterval(doTick, this.noteSwitchPeriod * 1000);
+  this.interval = setInterval(this.tick.bind(this), this.noteSwitchPeriod * 1000);
   this.synths.forEach(function(synth) {
     synth.start();
   });
