@@ -1,6 +1,9 @@
 var PIXI = require('pixi.js');
 var Blast = require('./blast');
 
+var context = new AudioContext();
+var Synth = require('./synth');
+
 var renderer = PIXI.autoDetectRenderer(800, 600,{backgroundColor : 0x222222});
 document.body.appendChild(renderer.view);
 
@@ -51,6 +54,12 @@ document.body.addEventListener('keydown', function(evt) {
 
   var blast = new Blast({ x: x, y: y, radius: 30, color: 0xff6600, stage: stage });
   blasts.push(blast);
+
+  var synth = new Synth({ frequency: 226, context: context });
+  synth.start();
+  setTimeout(function() {
+    synth.stop();
+  }, 1000);
 
   return false;
 });
